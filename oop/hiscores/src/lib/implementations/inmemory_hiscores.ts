@@ -20,7 +20,7 @@ import { JumpScore } from "$lib/do_not_modify/score";
 
 let leaderboards: Map<string, Leaderboard> = new Map<string, Leaderboard>();
 
-// Whatup im carl
+// Whatup im carl ashd
 
 export class InMemoryHiscores implements Hiscores {
   implementation: Implementation = Implementation.INMEMORY;
