@@ -1,6 +1,7 @@
 import { Implementation, type Hiscores } from "$lib/do_not_modify/hiscores";
 import { JumpPlayer } from "$lib/do_not_modify/player";
 import { DefaultRank } from "$lib/do_not_modify/rank";
+import type { Leaderboard } from '$lib/do_not_modify/leaderboard'
 import type {
   GetLeaderboardsRequest,
   GetLeaderboardsResponse,
@@ -16,6 +17,11 @@ import type {
   GetRanksForPlayerResponse,
 } from "$lib/do_not_modify/requests";
 import { JumpScore } from "$lib/do_not_modify/score";
+import * as db from "$lib/mongo/db"
+
+const client = await db.connect()
+const database = client.db("hiscores")
+const leaderboards = database.collection("leaderboards")
 
 export class MongoDBHiscores implements Hiscores {
   implementation: Implementation = Implementation.MONGODB;
@@ -83,6 +89,23 @@ export class MongoDBHiscores implements Hiscores {
 
     console.log("SubmitScoreRequest");
     console.log(request);
+
+    const leaderboardId = request.leaderboard_id
+
+    if(!leaderboardId){
+      const response: SubmitScoreResponse = {
+        success: false,
+        rank: new DefaultRank(0, "foo", new JumpScore(1337, new Date(), new JumpPlayer("bar", 9001)))
+      }
+    }
+
+    const leaderboard = await leaderboards.findOne({leaderboardId})
+
+    if(!leaderboard){
+      return {success:false,rank:{index:-1000,leaderboard_id:request.leaderboard_id,score:request.score}}
+    }
+
+    if(leaderboard.)
 
     const response: SubmitScoreResponse = {
       success: false,
