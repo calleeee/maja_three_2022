@@ -6,16 +6,24 @@
 </script>
 
 <form action="?/register" use:enhance method="POST">
-    <input type="text" id="email" placeholder="email">
+    <input type="text" name="email" placeholder="email">
 
-    <input type="text" id='username' placeholder="Username">
+    <input type="text" name='username' placeholder="Username">
 
-    <input type="password" id='password' placeholder="Password">
+    <input type="password" name='password' placeholder="Password">
 
-    <input type="password" id="passwordConfirm" placeholder="Password Conifrm">
+    <input type="password" name="passwordConfirm" placeholder="Password Conifrm">
 
-    {#if form?.error}
-        <p class="error">{form?.error}</p>
+    {#if form?.invalid}
+        <p class="error">Wrong format entered</p>
+    {/if}
+
+    {#if form?.match}
+        <p class="error">Passwords do not match</p>
+    {/if}
+
+    {#if form?.user}
+        <p class="error">This user already exists</p>
     {/if}
 
     <button>Register</button>

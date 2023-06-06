@@ -1,0 +1,34 @@
+<script lang="ts">
+	import { enhance } from '$app/forms';
+    import type { ActionData, PageData } from './$types';
+    
+    export let form: ActionData;
+</script>
+
+<form action="?/login" use:enhance method="POST">
+    <input type="text" name="username" id='username' placeholder="Username">
+
+    <input type="password" name="password" id='password' placeholder="Password">
+
+    {#if form?.invalid}
+        <p class="error">Wrong format entered</p>
+    {/if}
+
+    {#if form?.password}
+        <p class="error">Passwords do not match</p>
+    {/if}
+
+    {#if form?.user}
+        <p class="error">This user does not exist</p>
+    {/if}
+
+    <button>Login</button>
+</form>
+
+<p>If you don't already have an account, <a href="/register">register</a></p>
+
+<style>
+    .error{
+        color: tomato;
+    }
+</style>

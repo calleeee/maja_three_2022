@@ -19,6 +19,7 @@ model User {
   colortheme String
   darkMode Boolean
   siteVisits Int 
+  session String @unique
 }
 
 model Message {

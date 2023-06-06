@@ -8,6 +8,7 @@ declare global {
 			username?: string
 			siteVisits?: number | any
 			profilePic?: string
+			darkMode?: boolean
 		}
 		// interface PageData {}
 		// interface Platform {}

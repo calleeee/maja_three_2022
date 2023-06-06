@@ -1,4 +1,4 @@
-import { fail, type Actions } from '@sveltejs/kit';
+import { fail, type Actions, redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import { database } from '$lib/db/db'
 import bcrypt from 'bcrypt'
@@ -34,6 +34,8 @@ export const actions: Actions = {
             where: {username}
         })
 
+        let session = crypto.randomUUID()
+
         if(user){
             return fail(400, {user: true})
         }
@@ -51,7 +53,10 @@ export const actions: Actions = {
                 colortheme: 'Grey',
                 darkMode: true,
                 siteVisits: 1,
+                session,
             }
         })
+
+        throw redirect(302, '/login')
     }
 }
