@@ -37,7 +37,12 @@
         width: 40px;
     }
     main{
-        height: 100vh;
+        position: absolute;
+        top: 0px;
+        bottom: 0px;
+        left: 0%;
+        right: 0%;
+        height: 100%;
     }
     .dark{
         background-color: rgb(15, 15, 15);

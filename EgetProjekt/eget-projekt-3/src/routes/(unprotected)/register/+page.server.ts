@@ -52,7 +52,7 @@ export const actions: Actions = {
                 profilePic,
                 colortheme: 'Grey',
                 darkMode: true,
-                siteVisits: 1,
+                siteVisits: 0,
                 session,
             }
         })

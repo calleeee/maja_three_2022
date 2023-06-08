@@ -14,3 +14,13 @@
 {/if}
 
 <p>Chat with perverted 47 year olds for absolutely free</p>
+
+<style>
+    img{
+        width: 300px;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+</style>
