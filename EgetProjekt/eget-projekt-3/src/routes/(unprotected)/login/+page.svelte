@@ -31,4 +31,27 @@
     .error{
         color: tomato;
     }
+
+    input{
+        border: none;
+        width: 250px;
+        height: 50px;
+        border-radius: 10px;
+        background-color: rgb(251, 251, 251);
+        padding-left: 20px;
+    }
+
+    button{
+        border: none;
+        width: 250px;
+        height: 50px;
+        border-radius: 10px;
+        background-color: rgb(0, 128, 255);
+        color: white;
+    }
+    form{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
 </style>
