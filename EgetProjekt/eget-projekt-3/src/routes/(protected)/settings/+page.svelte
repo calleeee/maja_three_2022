@@ -48,6 +48,13 @@
     </form>
 </div>
 
+<h1 class="settingsTitle">Log out</h1>
+<div class="logout">
+    <form action="?/logout" method="POST">
+    <button>logout</button>
+</form>
+</div>
+
 <style>
     .current{
         width: 100px;

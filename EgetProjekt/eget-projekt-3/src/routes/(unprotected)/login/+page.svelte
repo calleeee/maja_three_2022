@@ -18,7 +18,7 @@
         <p class="error">Passwords do not match</p>
     {/if}
 
-    {#if form?.user}
+    {#if form?.userFound == false}
         <p class="error">This user does not exist</p>
     {/if}
 

@@ -17,7 +17,7 @@
     <header>
         <div class="headerOption"><a href="/settings">Settings</a></div>
         <div class="centre">
-            <div class="logo"><img src="/images/chatlogo.jpg" alt="Chat bubble"></div>
+            <div class="logo"><img src="/images/chatlogo.png" alt="Chat bubble"></div>
             <div class="headerOption"><a href="/">Home</a></div>
         </div>
         <div class="headerOption"><a href="/chat">Chat</a></div>

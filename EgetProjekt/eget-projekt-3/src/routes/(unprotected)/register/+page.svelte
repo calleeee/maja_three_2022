@@ -18,7 +18,7 @@
         <p class="error">Wrong format entered</p>
     {/if}
 
-    {#if form?.match}
+    {#if form?.match == false}
         <p class="error">Passwords do not match</p>
     {/if}
 

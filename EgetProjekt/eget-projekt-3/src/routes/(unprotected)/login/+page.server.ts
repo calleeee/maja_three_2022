@@ -27,7 +27,8 @@ export const actions: Actions = {
         })
 
         if(!user){
-            return fail(400, {user: false})
+            console.log('feck')
+            return fail(400, {userFound: false})
         }
 
         const passwordMatch = await bcrypt.compare(password, user.passwordHash)

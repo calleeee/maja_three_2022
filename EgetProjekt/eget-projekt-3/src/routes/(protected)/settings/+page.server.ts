@@ -1,6 +1,7 @@
 import { error, type Actions, fail } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import { database } from '$lib/db/db';
+import { redirect } from '@sveltejs/kit';
 
 export const load = (async ({locals}) => {
     let currentProfilePic = locals.profilePic
@@ -54,5 +55,10 @@ export const actions: Actions = {
                 }
             })
         }
+    },
+
+    logout: async ({locals, request, cookies}) => {
+        cookies.delete("session");
+    throw redirect(302, "/login");
     }
 }
