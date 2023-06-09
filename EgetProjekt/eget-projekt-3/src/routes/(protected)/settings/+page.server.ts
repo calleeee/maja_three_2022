@@ -36,18 +36,18 @@ export const actions: Actions = {
 
     darkmode: async ({locals, request, cookies}) => {
         const form = await request.formData()
-        const checked = String(form.get('darkmode'))
+        const mode = String(form.get('modeSelect'))
 
         const session = locals.session
 
-        if(checked == "dark"){
+        if(mode == "dark"){
             await database.user.update({
                 where: {session},
                 data: {
                     darkMode: true
                 }
             })
-        } else {
+        } else if(mode == 'light'){
             await database.user.update({
                 where: {session},
                 data: {
@@ -58,7 +58,9 @@ export const actions: Actions = {
     },
 
     logout: async ({locals, request, cookies}) => {
-        cookies.delete("session");
-    throw redirect(302, "/login");
+
+        cookies.delete('session')
+
+        throw redirect(302, "/login");
     }
 }

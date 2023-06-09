@@ -8,7 +8,7 @@ export const handle: Handle = async ({event, resolve}) =>{
         let result = await database.user.findUnique({ where: { session } });
 
         if (result?.session) {
-          event.locals.session = session;
+          event.locals.session = result.session;
         }
 
         event.locals.username = result?.username

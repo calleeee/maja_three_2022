@@ -66,61 +66,70 @@
   }
 </script>
 
-<h1>Messages</h1>
-<hr />
-{#if data?.chat}
-  <div class="chat">
-    {#each messages as message}
-      <div class="message" class:own={message.own}>
-        <p>
-          {@html message.content}
-        </p>
-        <i
-          >{message.own
-            ? message.author?.username + " at "
-            : ""}{message.timestamp.toDateString()}</i
-        >
-        {#if !message.own && !message.liked}
-          <form use:enhance method="post" action="?/like">
-            <input type="hidden" name="messageId" value={message.id} />
-            <button type="submit">like</button>
-          </form>
-        {:else if !message.own}
-          <form use:enhance method="post" action="?/unlike">
-            <input type="hidden" name="messageId" value={message.id} />
-            <button type="submit">unlike</button>
-          </form>
-        {/if}
-      </div>
-    {/each}
-  </div>
-{/if}
-
-<hr />
-
-<form bind:this={formRef} use:enhance method="post" action="?/write">
-  <textarea
-    on:keypress={(e) => {
-      if (e.code == "Enter" && e.shiftKey == false) {
-        e.preventDefault();
-        formRef.submit();
-      }
-    }}
-    name="message"
-    placeholder="message"
-    id=""
-  />
-  <button type="submit">write message</button>
-  {#if form?.error}
-    {form.error}
+<main>
+  <h1>Messages</h1>
+  <hr />
+  {#if data?.chat}
+    <div class="chat">
+      {#each messages as message}
+        <div class="message" class:own={message.own}>
+          <p>
+            {@html message.content}
+          </p>
+          <i
+            >{message.own
+              ? message.author?.username + " at "
+              : ""}{message.timestamp.toDateString()}</i
+          >
+          {#if !message.own && !message.liked}
+            <form use:enhance method="post" action="?/like">
+              <input type="hidden" name="messageId" value={message.id} />
+              <button type="submit">like</button>
+            </form>
+          {:else if !message.own}
+            <form use:enhance method="post" action="?/unlike">
+              <input type="hidden" name="messageId" value={message.id} />
+              <button type="submit">unlike</button>
+            </form>
+          {/if}
+        </div>
+      {/each}
+    </div>
   {/if}
-</form>
+  
+  <hr />
+  
+  <form bind:this={formRef} use:enhance method="post" action="?/write" class="textarea">
+    <textarea
+      on:keypress={(e) => {
+        if (e.code == "Enter" && e.shiftKey == false) {
+          e.preventDefault();
+          formRef.submit();
+        }
+      }}
+      name="message"
+      placeholder="message"
+      id=""
+    />
+    <button type="submit">write message</button>
+    {#if form?.error}
+      {form.error}
+    {/if}
+  </form>
+</main>
 
 <style>
+  main{
+    display: flex;
+    flex-direction: column;
+  }
   .chat {
     display: flex;
     flex-direction: column-reverse;
     max-height: 60vh;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
     overflow-y: scroll;
   }
 
@@ -140,5 +149,20 @@
 
   textarea {
     resize: none;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    width: 400px;
+    height: 100px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .textarea{
+    margin-left: auto;
+    margin-right: auto;
+  }
+  h1{
+    margin-left: auto;
+    margin-right: auto;
   }
 </style>

@@ -1,7 +1,7 @@
 import { error, fail, type Actions } from "@sveltejs/kit";
 import type { PageServerLoad } from "./$types";
 import { database } from "$lib/db/db";
-import { streams } from "./+server";
+import { _streams } from "./+server";
 import { compile } from "mdsvex";
 import rehypeStringify from "rehype-stringify";
 import rehypeSlug from "rehype-slug";
@@ -98,9 +98,9 @@ export const actions: Actions = {
               },
             });
 
-            for (const session in streams) {
+            for (const session in _streams) {
               /* send messages to all other streams exept own for this chat */
-              const connection = streams[session];
+              const connection = _streams[session];
               if (connection.chat == params.chat && session != locals.session) {
                 /* enqueue messages to all streams for this chat */
                 connection.controller.enqueue(JSON.stringify(msg));
